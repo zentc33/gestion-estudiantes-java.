@@ -21,6 +21,26 @@ grupo.
 - **Main**: programa principal. Crea 3 estudiantes, los agrega al gestor y
   prueba los métodos.
 
+## Actividad formativa 3: Herencia
+
+La aplicación se extendió con herencia, en la rama `herencia`:
+
+- **Estudiante** es la clase base: tiene matrícula, nombre, carrera y
+  promedio, con sus getters, setters, `estaAprobado()` y `mostrarDatos()`.
+- **EstudianteBecado** hereda de Estudiante y agrega `porcentajeBeca`,
+  con los métodos exclusivos `calcularDescuento()` y
+  `calcularPagoConBeca()`. Sobrescribe `mostrarDatos()` llamando a
+  `super.mostrarDatos()` y agregando la beca.
+- **EstudianteIntercambio** hereda de Estudiante y agrega
+  `universidadOrigen` y `paisOrigen`, con el método exclusivo
+  `mostrarOrigen()`. También sobrescribe `mostrarDatos()` con
+  `super.mostrarDatos()`.
+
+El gestor no cambió: como las subclases son Estudiantes, `GestorEstudiantes`
+las guarda y las trata igual que a cualquier estudiante (polimorfismo).
+El programa principal crea un estudiante becado y uno de intercambio y
+prueba sus métodos.
+
 ## Cómo compilar y correr
 
 Necesitas Java (JDK 17 o mayor) y un IDE como IntelliJ IDEA, Eclipse o

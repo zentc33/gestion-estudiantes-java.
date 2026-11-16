@@ -1,8 +1,10 @@
 // Programa principal
 // Aquí se crean los objetos Estudiante, se prueban los métodos
 // del gestor y se muestra el resultado en pantalla.
+// Actividad formativa 3: se agregan objetos de las subclases
+// EstudianteBecado y EstudianteIntercambio para probar la herencia.
 // Autor: Zen Alejandro Tovar Cruz
-// Para compilar: javac src/*.java -d out
+// Para compilar: javac -encoding UTF-8 src/*.java -d out
 // Para correr:   java -cp out Main
 
 public class Main {
@@ -51,5 +53,45 @@ public class Main {
         System.out.println();
         gestor.eliminarEstudiante("106472");
         gestor.mostrarTodos();
+
+        // ---- Actividad formativa 3: herencia ----
+        System.out.println();
+        System.out.println("=== Probando la herencia ===");
+
+        // Instanciación de objetos de las subclases. Como EstudianteBecado
+        // y EstudianteIntercambio heredan de Estudiante, el gestor los
+        // acepta igual que a cualquier estudiante (polimorfismo).
+        EstudianteBecado becado = new EstudianteBecado("106473",
+                "Lucía Fernández Ruiz", "Ing. en Desarrollo de Software",
+                95.0, 50.0);
+        EstudianteIntercambio intercambio = new EstudianteIntercambio("106474",
+                "John Smith", "Ing. en Desarrollo de Software",
+                88.0, "University of Texas", "Estados Unidos");
+
+        gestor.agregarEstudiante(becado);
+        gestor.agregarEstudiante(intercambio);
+
+        // mostrarDatos() está sobrescrito en cada subclase: se ven los
+        // datos heredados y los propios de cada una
+        System.out.println();
+        becado.mostrarDatos();
+        System.out.println("--------------------");
+        intercambio.mostrarDatos();
+
+        // Métodos exclusivos de cada subclase
+        System.out.println();
+        System.out.println("Colegiatura: $10,000");
+        System.out.println("Descuento por beca: $"
+                + becado.calcularDescuento(10000));
+        System.out.println("Pago con beca: $"
+                + becado.calcularPagoConBeca(10000));
+        System.out.println();
+        intercambio.mostrarOrigen();
+
+        // El gestor sigue funcionando con todos, sin importar la subclase
+        System.out.println();
+        System.out.println("Promedio general del grupo: " + gestor.promedioGeneral());
+        System.out.println("Estudiantes aprobados: " + gestor.contarAprobados()
+                + " de " + 4);
     }
 }
